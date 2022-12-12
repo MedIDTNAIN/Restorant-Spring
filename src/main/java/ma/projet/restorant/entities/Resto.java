@@ -1,15 +1,11 @@
 package ma.projet.restorant.entities;
 
 import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -17,21 +13,12 @@ import jakarta.persistence.TemporalType;
 public class Resto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int id, rank;
 	private String nom, adresse;
 	@Temporal(TemporalType.TIME)
 	private Date openTime, closeTime;
 	private double height, width;
-	private int rank;
 	private boolean week;
-	@ManyToMany
-	private List<Specialite> specialites;
-	@ManyToOne
-	private Zone zone;
-	@ManyToOne
-	private Serie serie;
-	@OneToMany
-	private List<Photo> photos;
 
 	public Resto() {
 		super();
@@ -107,38 +94,6 @@ public class Resto {
 
 	public void setWeek(boolean week) {
 		this.week = week;
-	}
-
-	public List<Specialite> getSpecialites() {
-		return specialites;
-	}
-
-	public void setSpecialites(List<Specialite> specialites) {
-		this.specialites = specialites;
-	}
-
-	public Zone getZone() {
-		return zone;
-	}
-
-	public void setZone(Zone zone) {
-		this.zone = zone;
-	}
-
-	public Serie getSerie() {
-		return serie;
-	}
-
-	public void setSerie(Serie serie) {
-		this.serie = serie;
-	}
-
-	public List<Photo> getPhotos() {
-		return photos;
-	}
-
-	public void setPhotos(List<Photo> photos) {
-		this.photos = photos;
 	}
 
 }

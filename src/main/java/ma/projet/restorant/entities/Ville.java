@@ -1,13 +1,9 @@
 package ma.projet.restorant.entities;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Ville {
@@ -16,9 +12,6 @@ public class Ville {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nom;
-	@OneToMany(fetch = FetchType.EAGER)
-	private List<Zone> zones;
-
 
 	public Ville() {
 		super();
@@ -39,13 +32,7 @@ public class Ville {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-	public List<Zone> getZones() {
-		return zones;
-	}
-
-	public void setZones(List<Zone> zones) {
-		this.zones = zones;
-	}
+	
+	
 
 }

@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Photo {
@@ -12,8 +11,6 @@ public class Photo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String url;
-	@ManyToOne
-	private Resto resto;
 
 	public Photo() {
 		super();
@@ -33,14 +30,6 @@ public class Photo {
 
 	public void setUrl(String url) {
 		this.url = url;
-	}
-
-	public Resto getResto() {
-		return resto;
-	}
-
-	public void setResto(Resto resto) {
-		this.resto = resto;
 	}
 
 }

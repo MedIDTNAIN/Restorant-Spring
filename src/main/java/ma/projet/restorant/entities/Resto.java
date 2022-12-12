@@ -1,7 +1,10 @@
 package ma.projet.restorant.entities;
 
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,8 +23,9 @@ public class Resto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nom, adresse;
+	@CreationTimestamp
 	@Temporal(TemporalType.TIME)
-	private Date openTime, closeTime;
+	private LocalTime openTime, closeTime;
 	private double height, width;
 	private int rank;
 	private boolean week;
@@ -70,19 +74,19 @@ public class Resto {
 		this.adresse = adresse;
 	}
 
-	public Date getOpenTime() {
+	public LocalTime getOpenTime() {
 		return openTime;
 	}
 
-	public void setOpenTime(Date openTime) {
+	public void setOpenTime(LocalTime openTime) {
 		this.openTime = openTime;
 	}
 
-	public Date getCloseTime() {
+	public LocalTime getCloseTime() {
 		return closeTime;
 	}
 
-	public void setCloseTime(Date closeTime) {
+	public void setCloseTime(LocalTime closeTime) {
 		this.closeTime = closeTime;
 	}
 

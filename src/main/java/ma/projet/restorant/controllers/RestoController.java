@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,11 @@ public class RestoController {
 		restoRepository.delete(s);
 	}
 
+	@PutMapping("/update/{id}")
+	public void update(@PathVariable(required = true) String id, @RequestBody Resto Rest) {
+		//restoRepository.update(id, Rest);
+	}
+	
 	@GetMapping("/all")
 	public List<Resto> findAll() {
 		return restoRepository.findAll();
@@ -39,5 +45,20 @@ public class RestoController {
 	@GetMapping(value = "/count")
 	public long countResto() {
 		return restoRepository.count();
+	}
+	
+	@GetMapping("/byName/{nom}")
+	public List<Resto> findByNom(@PathVariable(required = true) String nom) {
+		return restoRepository.findByNom(nom);
+	}
+	
+	@GetMapping("/byAddress/{adresse}")
+	public List<Resto> findByAdresse(@PathVariable(required = true) String adresse) {
+		return restoRepository.findByAdresse(adresse);
+	}
+	
+	@GetMapping("/byRank/{rank}")
+	public List<Resto> findByRank(@PathVariable(required = true) String rank) {
+		return restoRepository.findByRank(Integer.parseInt(rank));
 	}
 }

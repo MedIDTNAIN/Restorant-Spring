@@ -40,4 +40,9 @@ public class PhotoController {
 	public long countResto() {
 		return photoRepository.count();
 	}
+	
+	@GetMapping("/byUrl/{url}")
+	public List<Photo> findByUrl(@PathVariable(required = true) String url) {
+		return photoRepository.findByUrl(url);
+	}
 }

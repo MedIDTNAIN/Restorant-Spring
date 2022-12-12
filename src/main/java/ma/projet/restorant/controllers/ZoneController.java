@@ -40,4 +40,9 @@ public class ZoneController {
 	public long countResto() {
 		return zoneRepository.count();
 	}
+	
+	@GetMapping("/byName/{nom}")
+	public List<Zone> findByNom(@PathVariable(required = true) String nom) {
+		return zoneRepository.findByNom(nom);
+	}
 }

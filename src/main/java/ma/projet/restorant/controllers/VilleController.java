@@ -40,4 +40,9 @@ public class VilleController {
 	public long countVille() {
 		return villeRepository.count();
 	}
+	
+	@GetMapping("/byName/{nom}")
+	public List<Ville> findByNom(@PathVariable(required = true) String nom) {
+		return villeRepository.findByNom(nom);
+	}
 }

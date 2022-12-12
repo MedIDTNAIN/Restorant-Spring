@@ -40,4 +40,10 @@ public class SerieController {
 	public long countResto() {
 		return serieRepository.count();
 	}
+	
+	@GetMapping("/byName/{nom}")
+	public List<Serie> findByNom(@PathVariable(required = true) String nom) {
+		return serieRepository.findByNom(nom);
+	}
+	
 }

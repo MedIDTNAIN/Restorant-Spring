@@ -40,4 +40,10 @@ public class SpecialiteController {
 	public long countResto() {
 		return specialiteRepository.count();
 	}
+	
+	@GetMapping("/byName/{nom}")
+	public List<Specialite> findByNom(@PathVariable(required = true) String nom) {
+		return specialiteRepository.findByNom(nom);
+	}
+	
 }

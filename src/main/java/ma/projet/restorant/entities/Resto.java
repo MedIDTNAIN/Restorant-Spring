@@ -10,7 +10,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Temporal;
@@ -34,8 +33,8 @@ public class Resto {
 	private List<Photo> photos;
 	@ManyToOne
 	private Serie serie;
-	@ManyToMany
-	private List<Specialite> specs;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "resto")
+	private List<LigneSpecialite> ligneSpecialite;
 
 	public Resto() {
 		super();
@@ -137,12 +136,12 @@ public class Resto {
 		this.serie = serie;
 	}
 
-	public List<Specialite> getSpecs() {
-		return specs;
+	public List<LigneSpecialite> getSpecs() {
+		return ligneSpecialite;
 	}
 
-	public void setSpecs(List<Specialite> specs) {
-		this.specs = specs;
+	public void setSpecs(List<LigneSpecialite> ligneSpecialite) {
+		this.ligneSpecialite = ligneSpecialite;
 	}
 
 }

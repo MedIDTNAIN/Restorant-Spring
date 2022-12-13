@@ -3,10 +3,11 @@ package ma.projet.restorant.entities;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Specialite {
@@ -14,8 +15,8 @@ public class Specialite {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nom;
-	@ManyToMany
-	private List<Resto> restos;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "specialite")
+	private List<LigneSpecialite> ligneSpecialite;
 
 	public Specialite() {
 		super();
@@ -37,12 +38,12 @@ public class Specialite {
 		this.nom = nom;
 	}
 
-	public List<Resto> getRestos() {
-		return restos;
+	public List<LigneSpecialite> getRestos() {
+		return ligneSpecialite;
 	}
 
-	public void setRestos(List<Resto> restos) {
-		this.restos = restos;
+	public void setRestos(List<LigneSpecialite> ligneSpecialite) {
+		this.ligneSpecialite = ligneSpecialite;
 	}
 
 }

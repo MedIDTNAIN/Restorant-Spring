@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ma.projet.restorant.entities.Resto;
+import ma.projet.restorant.entities.Serie;
+import ma.projet.restorant.entities.Zone;
 import ma.projet.restorant.reposit.RestoRepository;
 
 @RestController
@@ -56,9 +58,21 @@ public class RestoController {
 	public List<Resto> findByAdresse(@PathVariable(required = true) String adresse) {
 		return restoRepository.findByAdresse(adresse);
 	}
+
 	
 	@GetMapping("/byRank/{rank}")
 	public List<Resto> findByRank(@PathVariable(required = true) String rank) {
 		return restoRepository.findByRank(Integer.parseInt(rank));
 	}
+	
+	@GetMapping("/byZone/{zone}")
+	public List<Resto> findByZone(@PathVariable(required = true) Zone zone) {
+		return restoRepository.findByZone(zone);
+	}
+	
+	@GetMapping("/bySerie/{serie}")
+	public List<Resto> findBySerie(@PathVariable(required = true) Serie serie) {
+		return restoRepository.findBySerie(serie);
+	}
+
 }

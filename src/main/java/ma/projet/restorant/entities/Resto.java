@@ -1,6 +1,6 @@
 package ma.projet.restorant.entities;
 
-import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -22,8 +22,8 @@ public class Resto {
 	private int id;
 	private String nom, adresse;
 	@Temporal(TemporalType.TIME)
-	@JsonFormat(pattern="HH:mm:ss")
-	private Time openTime, closeTime;
+	@JsonFormat(pattern = "HH:mm")
+	private Date openTime, closeTime;
 	private double height, width;
 	private int rank;
 	private boolean week;
@@ -72,19 +72,19 @@ public class Resto {
 		this.adresse = adresse;
 	}
 
-	public Time getOpenTime() {
+	public Date getOpenTime() {
 		return openTime;
 	}
 
-	public void setOpenTime(Time openTime) {
+	public void setOpenTime(Date openTime) {
 		this.openTime = openTime;
 	}
 
-	public Time getCloseTime() {
+	public Date getCloseTime() {
 		return closeTime;
 	}
 
-	public void setCloseTime(Time closeTime) {
+	public void setCloseTime(Date closeTime) {
 		this.closeTime = closeTime;
 	}
 

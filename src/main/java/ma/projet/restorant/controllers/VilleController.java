@@ -3,6 +3,7 @@ package ma.projet.restorant.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +43,7 @@ public class VilleController {
 	}
 	
 	@GetMapping("/byName/{nom}")
-	public List<Ville> findByNom(@PathVariable(required = true) String nom) {
+	public List<Ville> findByNom(@Param(value = "nom") String nom) {
 		return villeRepository.findByNom(nom);
 	}
 }

@@ -1,9 +1,9 @@
 package ma.projet.restorant.entities;
 
-import java.time.LocalTime;
+import java.sql.Time;
 import java.util.List;
 
-import org.hibernate.annotations.CreationTimestamp;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,9 +21,9 @@ public class Resto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nom, adresse;
-	@CreationTimestamp
 	@Temporal(TemporalType.TIME)
-	private LocalTime openTime, closeTime;
+	@JsonFormat(pattern="HH:mm:ss")
+	private Time openTime, closeTime;
 	private double height, width;
 	private int rank;
 	private boolean week;
@@ -72,19 +72,19 @@ public class Resto {
 		this.adresse = adresse;
 	}
 
-	public LocalTime getOpenTime() {
+	public Time getOpenTime() {
 		return openTime;
 	}
 
-	public void setOpenTime(LocalTime openTime) {
+	public void setOpenTime(Time openTime) {
 		this.openTime = openTime;
 	}
 
-	public LocalTime getCloseTime() {
+	public Time getCloseTime() {
 		return closeTime;
 	}
 
-	public void setCloseTime(LocalTime closeTime) {
+	public void setCloseTime(Time closeTime) {
 		this.closeTime = closeTime;
 	}
 

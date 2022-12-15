@@ -2,10 +2,10 @@ $(document)
 	.ready(
 		function() {
 
-			table = $('#tresto')
+			table = $('#tspecialite')
 				.DataTable({
 					ajax: {
-						url: "restos/all",
+						url: "specialites/all",
 						dataSrc: ''
 					},
 					columns: [
@@ -15,21 +15,7 @@ $(document)
 						{
 							data: "nom"
 						},
-						{
-							data: "adresse"
-						},
-						{
-							data: "openTime"
-						},
-						{
-							data: "closeTime"
-						},
-						{
-							data: "week"
-						},
-						{
-							data: "rank"
-						},
+						
 						{
 							"render": function() {
 								return '<button type="button" class="btn btn-outline-danger supprimer">Supprimer</button>';
@@ -46,23 +32,15 @@ $(document)
 			$('#btn').click(
 				function() {
 					var nom = $("#nom");
-					var adresse = $("#adresse");
-					var openTime = $("#openTime");
-					var closeTime = $("#closeTime");
-					var week = $("#week");
-					var rank = $("#rank");
+					
 					if ($('#btn').text() == 'Ajouter') {
 						var p = {
 							nom: nom.val(),
-							adresse: adresse.val(),
-							openTime: openTime.val(),
-							closeTime: closeTime.val(),
-							week: week.val(),
-							rank: rank.val(),
+							
 						};
 
 						$.ajax({
-							url: 'restos/save',
+							url: 'specialites/save',
 							contentType: "application/json",
 							dataType: "json",
 							data: JSON.stringify(p),
@@ -78,7 +56,7 @@ $(document)
 							}
 						});
 						$("#main-content").load(
-							"./page/resto.html");
+							"./page/specialite.html");
 					}
 				});
 
@@ -95,7 +73,7 @@ $(document)
 						var newLigne = '<tr style="position: relative;" class="bg-light" ><th scope="row">'
 							+ id
 							+ '</th><td colspan="4" style="height: 100%;">';
-						newLigne += '<h4 class="d-inline-flex">Voulez vous vraiment supprimer ce resto ? </h4>';
+						newLigne += '<h4 class="d-inline-flex">Voulez vous vraiment supprimer ce specialite ? </h4>';
 						newLigne += '<button type="button" class="btn btn-outline-primary btn-sm confirmer" style="margin-left: 25px;">Oui</button>';
 						newLigne += '<button type="button" class="btn btn-outline-danger btn-sm annuler" style="margin-left: 25px;">Non</button></td></tr>';
 
@@ -113,7 +91,7 @@ $(document)
 									e.preventDefault();
 									$
 										.ajax({
-											url: 'restos/delete/'
+											url: 'specialites/delete/'
 												+ id,
 											data: {},
 											type: 'DELETE',
@@ -155,40 +133,22 @@ $(document)
 						.text();
 					;
 					var nom = $(this).closest('tr').find('td')
-						.eq(1).text();
-					var adresse = $(this).closest('tr').find('td').eq(
-						2).text();
-					var openTime = $(this).closest('tr').find('td').eq(
-						4).text();
-					var closeTime = $(this).closest('tr').find('td').eq(
-						3).text();
-					var week = $(this).closest('tr').find('td').eq(
-						5).text();
-					var rank = $(this).closest('tr')
-						.find('td').eq(6).text().replace(" ",
-							"T");
+						.eq(2).text();
+					
+							
 					btn.text('Modifier');
 					$("#nom").val(nom);
-					$("#adresse").val(adresse);
-					$("#openTime").val(openTime);
-					$("#id").val(id);
-					$("#closeTime").val(closeTime);
-					$("#week").val(week);
-					$("#rank").val(rank);
+					
 					btn.click(function(e) {
 						e.preventDefault();
 						var p = {
 							id: $("#id").val(),
 							nom: $("#nom").val(),
-							adresse: $("#adresse").val(),
-							openTime: $("#openTime").val(),
-							closeTime: $("#closeTime").val(),
-							week: $("#week").val(),
-							rank: $("#rank").val()
+							
 						};
 						if ($('#btn').text() == 'Modifier') {
 							$.ajax({
-								url: 'restos/save',
+								url: 'specialites/save',
 								contentType: "application/json",
 								dataType: "json",
 								data: JSON.stringify(p),
@@ -197,7 +157,7 @@ $(document)
 								success: function(data,
 									textStatus, jqXHR) {
 									table.ajax.reload();
-									$("#adresse").val('');
+								
 									$("#nom").val('');
 									btn.text('Ajouter');
 								},
@@ -207,7 +167,7 @@ $(document)
 								}
 							});
 							$("#main-content").load(
-								"./page/resto.html");
+								"./page/specialite.html");
 						}
 					});
 				});
@@ -232,7 +192,7 @@ $(document)
 			// }
 
 			// $.ajax({
-			// url: 'restos/all',
+			// url: 'specialites/all',
 			// data: {op: ''},
 			// type: 'GET',
 			// async: false,

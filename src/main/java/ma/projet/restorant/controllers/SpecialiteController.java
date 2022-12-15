@@ -15,7 +15,7 @@ import ma.projet.restorant.entities.Specialite;
 import ma.projet.restorant.reposit.SpecialiteRepository;
 
 @RestController
-@RequestMapping("specs")
+@RequestMapping("specialites")
 public class SpecialiteController {
 	@Autowired
 	private SpecialiteRepository specialiteRepository;

@@ -10,6 +10,34 @@ function show(page) {
 
 		event.preventDefault();
 	}
+	if (page == 'ville') {
+		$('a').removeClass('active');
+		$('a:contains(ville)').addClass('active');
+		$("#main-content").load("page/ville.html");
+
+		event.preventDefault();
+	}
+	if (page == 'zone') {
+		$('a').removeClass('active');
+		$('a:contains(zone)').addClass('active');
+		$("#main-content").load("page/zone.html");
+
+		event.preventDefault();
+	}
+	if (page == 'serie') {
+		$('a').removeClass('active');
+		$('a:contains(serie)').addClass('active');
+		$("#main-content").load("page/serie.html");
+
+		event.preventDefault();
+	}
+	if (page == 'specialite') {
+		$('a').removeClass('active');
+		$('a:contains(specialite)').addClass('active');
+		$("#main-content").load("page/specialite.html");
+
+		event.preventDefault();
+	}
 	if (page == "statistiques") {
 		$('a').removeClass('active');
 		$('a:contains(Statistiques)').addClass('active');

@@ -13,19 +13,19 @@ public interface RestoRepository extends JpaRepository<Resto, Integer>{
 
 	Resto findById(int id);
 	
-	@Query("select r from Resto r where r.nom = :nom")
+	@Query("select r from Resto r where r.nom = ?1")
 	List<Resto> findByNom(String nom);
 
-	@Query("select r from Resto r where r.adresse = :adresse")
+	@Query("select r from Resto r where r.adresse = ?1")
 	List<Resto> findByAdresse(String adresse);
 	
-	@Query("select r from Resto r where r.rank = :rank order by nom desc")
+	@Query("select r from Resto r where r.rank = ?1 order by nom desc")
 	List<Resto> findByRank(int rank);
 	
-	@Query("select r from Resto r where r.zone like :zone")
+	@Query("select r from Resto r where r.zone like ?1")
 	List<Resto> findByZone(Zone zone);
 	
-	@Query("select r from Resto r where r.serie like :serie")
+	@Query("select r from Resto r where r.serie like ?1")
 	List<Resto> findBySerie(Serie serie);
 	
 }

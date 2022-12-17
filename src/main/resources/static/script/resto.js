@@ -31,6 +31,12 @@ $(document)
 							data: "rank"
 						},
 						{
+							data: "serie.nom"
+						},
+						{
+							data: "zone.nom"
+						},
+						{
 							"render": function() {
 								return '<button type="button" class="btn btn-outline-danger supprimer">Supprimer</button>';
 							}
@@ -43,6 +49,41 @@ $(document)
 
 				});
 
+			$.ajax({
+				url: '/series/all',
+				type: 'GET',
+				success: function(data) {
+					var option = '';
+					data.forEach(e => {
+						option += '<option value =' + e.id + '>' + e.nom + '</option>';
+					});
+
+					$('#serie').append(option);
+				},
+				error: function(jqXHR, textStatus,
+					errorThrown) {
+					console.log(textStatus);
+				}
+
+			});
+			$.ajax({
+				url: '/zones/all',
+				type: 'GET',
+				success: function(data) {
+					var option = '';
+					data.forEach(e => {
+						option += '<option value =' + e.id + '>' + e.nom + '</option>';
+					});
+
+					$('#zone').append(option);
+				},
+				error: function(jqXHR, textStatus,
+					errorThrown) {
+					console.log(textStatus);
+				}
+
+			});
+
 			$('#btn').click(
 				function() {
 					var nom = $("#nom");
@@ -51,6 +92,8 @@ $(document)
 					var closeTime = $("#closeTime");
 					var week = $("#week");
 					var rank = $("#rank");
+					var zone = $("#zone");
+					var serie = $("#serie");
 					if ($('#btn').text() == 'Ajouter') {
 						var p = {
 							nom: nom.val(),
@@ -59,6 +102,14 @@ $(document)
 							closeTime: closeTime.val(),
 							week: week.val(),
 							rank: rank.val(),
+
+							serie: {
+								id: serie.val()
+							},
+
+							zone: {
+								id: zone.val()
+							}
 						};
 
 						$.ajax({
@@ -159,14 +210,18 @@ $(document)
 					var adresse = $(this).closest('tr').find('td').eq(
 						2).text();
 					var openTime = $(this).closest('tr').find('td').eq(
-						4).text();
-					var closeTime = $(this).closest('tr').find('td').eq(
 						3).text();
+					var closeTime = $(this).closest('tr').find('td').eq(
+						4).text();
 					var week = $(this).closest('tr').find('td').eq(
 						5).text();
 					var rank = $(this).closest('tr')
 						.find('td').eq(6).text().replace(" ",
 							"T");
+					var serie = $(this).closest('tr').find('td')
+						.eq(7).text();
+					var zone = $(this).closest('tr').find('td')
+						.eq(8).text();
 					btn.text('Modifier');
 					$("#nom").val(nom);
 					$("#adresse").val(adresse);
@@ -175,6 +230,10 @@ $(document)
 					$("#closeTime").val(closeTime);
 					$("#week").val(week);
 					$("#rank").val(rank);
+					var op = $('#serie option').filter(function() { return $(this).html() == serie; }).val();
+					$("#serie").val(op);
+					var op1 = $('#zone option').filter(function() { return $(this).html() == zone; }).val();
+					$("#zone").val(op1);
 					btn.click(function(e) {
 						e.preventDefault();
 						var p = {
@@ -184,7 +243,15 @@ $(document)
 							openTime: $("#openTime").val(),
 							closeTime: $("#closeTime").val(),
 							week: $("#week").val(),
-							rank: $("#rank").val()
+							rank: $("#rank").val(),
+							serie: {
+								id: $("#serie").val()
+
+							},
+							zone: {
+								id: $("#zone").val()
+
+							}
 						};
 						if ($('#btn').text() == 'Modifier') {
 							$.ajax({

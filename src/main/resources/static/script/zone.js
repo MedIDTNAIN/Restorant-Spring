@@ -3,40 +3,65 @@ $(document)
 		function() {
 
 			table = $('#tzone')
-				.DataTable({
-					ajax: {
-						url: "zones/all",
-						dataSrc: ''
-					},
-					columns: [
-						{
-							data: "id"
-						},
-						{
-							data: "nom"
-						},
-						
-						{
-							"render": function() {
-								return '<button type="button" class="btn btn-outline-danger supprimer">Supprimer</button>';
-							}
-						},
-						{
-							"render": function() {
-								return '<button type="button" class="btn btn-outline-secondary modifier">Modifier</button>';
-							}
-						}]
+							.DataTable({
+										ajax : {
+											url : "zones/all",
+											dataSrc : ''
+										},
+										columns : [
+												{
+													data : "id"
+												},
+												{
+													data : "nom"
+												},
+												
+												{
+													data : "ville.nom"
+												},
+												{
+													"render" : function() {
+														return '<button type="button" class="btn btn-outline-danger supprimer">Supprimer</button>';
+													}
+												},
+												{
+													"render" : function() {
+														return '<button type="button" class="btn btn-outline-secondary modifier">Modifier</button>';
+													}
+												} ]
 
-				});
+									});
+
+			$.ajax({
+				url: '/villes/all',
+				type: 'GET',
+				success: function(data) {
+					var option = '';
+					data.forEach(e => {
+						option += '<option value =' + e.id + '>' + e.nom + '</option>';
+					});
+
+					$('#ville').append(option);
+				},
+				error: function(jqXHR, textStatus,
+					errorThrown) {
+					console.log(textStatus);
+				}
+
+			});
 
 			$('#btn').click(
 				function() {
 					var nom = $("#nom");
 					
+					var ville = $("#ville");
 					if ($('#btn').text() == 'Ajouter') {
 						var p = {
 							nom: nom.val(),
 							
+							ville: {
+								id: ville.val()
+							}
 						};
 
 						$.ajax({
@@ -73,7 +98,7 @@ $(document)
 						var newLigne = '<tr style="position: relative;" class="bg-light" ><th scope="row">'
 							+ id
 							+ '</th><td colspan="4" style="height: 100%;">';
-						newLigne += '<h4 class="d-inline-flex">Voulez vous vraiment supprimer ce zone ? </h4>';
+						newLigne += '<h4 class="d-inline-flex">Voulez vous vraiment supprimer cette ville ? </h4>';
 						newLigne += '<button type="button" class="btn btn-outline-primary btn-sm confirmer" style="margin-left: 25px;">Oui</button>';
 						newLigne += '<button type="button" class="btn btn-outline-danger btn-sm annuler" style="margin-left: 25px;">Non</button></td></tr>';
 
@@ -131,20 +156,32 @@ $(document)
 					var btn = $('#btn');
 					var id = $(this).closest('tr').find('td').eq(0)
 						.text();
-					;
-					var nom = $(this).closest('tr').find('td')
-						.eq(2).text();
-					
-							
+
+					var nom = $(this).closest('tr').find('td').eq(
+						1).text();
+				
+					var ville = $(this).closest('tr').find('td')
+						.eq(4).text();
+
+
 					btn.text('Modifier');
 					$("#nom").val(nom);
 					
+					var op = $('#ville option').filter(function() { return $(this).html() == ville; }).val();
+					$("#ville").val(op);
+					$("#id").val(id);
+
 					btn.click(function(e) {
 						e.preventDefault();
 						var p = {
 							id: $("#id").val(),
 							nom: $("#nom").val(),
 							
+							ville: {
+								id: $("#ville").val()
+
+							}
+
 						};
 						if ($('#btn').text() == 'Modifier') {
 							$.ajax({
@@ -157,8 +194,9 @@ $(document)
 								success: function(data,
 									textStatus, jqXHR) {
 									table.ajax.reload();
-								
 									$("#nom").val('');
+									
+									$("#ville").val('');
 									btn.text('Ajouter');
 								},
 								error: function(jqXHR, textStatus,
@@ -171,7 +209,6 @@ $(document)
 						}
 					});
 				});
-
 			// function remplir(data) {
 			// var contenu = $('#table-content');
 			// var ligne = "";
@@ -204,4 +241,5 @@ $(document)
 			// console.log(textStatus);
 			// }
 			// });
+
 		});

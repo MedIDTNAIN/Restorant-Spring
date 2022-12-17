@@ -133,7 +133,7 @@ $(document)
 						.text();
 					;
 					var nom = $(this).closest('tr').find('td')
-						.eq(2).text();
+						.eq(1).text();
 					
 							
 					btn.text('Modifier');

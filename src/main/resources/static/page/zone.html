@@ -26,7 +26,13 @@
 		<div class="card-body container-fluid">
 			<div class="row">
 				<div class="col-sm-6 mb-2">
-					<label for="nom">Nom : </label> <input class="form-control"
+
+					<label for="ville">Ville : </label> <select class="form-control" id="ville" name="ville">
+						<option value="0">choisir une ville</option>
+				</div>
+				<div class="col-sm-6 mb-2">
+
+					</select> <label for="nom">Nom : </label> <input class="form-control"
 						type="text" id="nom" required>
 				</div>
 			</div>
@@ -43,6 +49,7 @@
 						<tr class="text-uppercase bg-light  w-100">
 							<th scope="col">Id</th>
 							<th scope="col">Nom</th>
+							<th scope="col">ville</th>
 							<th scope="col">Supprimer</th>
 							<th scope="col">Modifier</th>
 						</tr>

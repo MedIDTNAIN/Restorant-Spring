@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ma.projet.restorant.entities.Resto;
@@ -49,29 +50,28 @@ public class RestoController {
 		return restoRepository.count();
 	}
 	
-	@GetMapping("/byName/{nom}")
-	public List<Resto> findByNom(@PathVariable(required = true) String nom) {
+	@GetMapping("/name/{nom}")
+	public List<Resto> findByNom(@RequestParam(required = false) String nom) {
 		return restoRepository.findByNom(nom);
 	}
 	
-	@GetMapping("/byAddress/{adresse}")
-	public List<Resto> findByAdresse(@PathVariable(required = true) String adresse) {
+	@GetMapping("/address/{adresse}")
+	public List<Resto> findByAdresse(@RequestParam(required = false) String adresse) {
 		return restoRepository.findByAdresse(adresse);
 	}
 
-	
-	@GetMapping("/byRank/{rank}")
-	public List<Resto> findByRank(@PathVariable(required = true) String rank) {
-		return restoRepository.findByRank(Integer.parseInt(rank));
+	@GetMapping("/rank/{rank}")
+	public List<Resto> findByRank(@RequestParam(required = false) Integer rank) {
+		return restoRepository.findByRank(rank);
 	}
 	
-	@GetMapping("/byZone/{zone}")
-	public List<Resto> findByZone(@PathVariable(required = true) Zone zone) {
+	@GetMapping("/zone/{zone}")
+	public List<Resto> findByZone(@RequestParam(required = false) Zone zone) {
 		return restoRepository.findByZone(zone);
 	}
 	
-	@GetMapping("/bySerie/{serie}")
-	public List<Resto> findBySerie(@PathVariable(required = true) Serie serie) {
+	@GetMapping("/serie/{serie}")
+	public List<Resto> findBySerie(@RequestParam(required = false) Serie serie) {
 		return restoRepository.findBySerie(serie);
 	}
 

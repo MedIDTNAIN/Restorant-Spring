@@ -5,35 +5,35 @@ $("#main-content").load("page/statistiques.html");
 function show(page) {
 	if (page == 'resto') {
 		$('a').removeClass('active');
-		$('a:contains(resto)').addClass('active');
+		$('a:contains(Restorants)').addClass('active');
 		$("#main-content").load("page/resto.html");
 
 		event.preventDefault();
 	}
 	if (page == 'ville') {
 		$('a').removeClass('active');
-		$('a:contains(ville)').addClass('active');
+		$('a:contains(Villes)').addClass('active');
 		$("#main-content").load("page/ville.html");
 
 		event.preventDefault();
 	}
 	if (page == 'zone') {
 		$('a').removeClass('active');
-		$('a:contains(zone)').addClass('active');
+		$('a:contains(Zones)').addClass('active');
 		$("#main-content").load("page/zone.html");
 
 		event.preventDefault();
 	}
 	if (page == 'serie') {
 		$('a').removeClass('active');
-		$('a:contains(serie)').addClass('active');
+		$('a:contains(Séries)').addClass('active');
 		$("#main-content").load("page/serie.html");
 
 		event.preventDefault();
 	}
 	if (page == 'specialite') {
 		$('a').removeClass('active');
-		$('a:contains(specialite)').addClass('active');
+		$('a:contains(Spécialités)').addClass('active');
 		$("#main-content").load("page/specialite.html");
 
 		event.preventDefault();

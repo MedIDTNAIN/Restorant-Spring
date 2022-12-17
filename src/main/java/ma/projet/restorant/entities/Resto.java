@@ -33,7 +33,7 @@ public class Resto {
 	private List<Photo> photos;
 	@ManyToOne
 	private Serie serie;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "resto")
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<LigneSpecialite> ligneSpecialite;
 
 	public Resto() {
@@ -67,7 +67,6 @@ public class Resto {
 	public String getAdresse() {
 		return adresse;
 	}
-
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}

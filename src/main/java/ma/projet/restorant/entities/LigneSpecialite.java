@@ -12,7 +12,7 @@ public class LigneSpecialite {
 	private LigneSpecialitePK specialitePK;
 	@ManyToOne
 	@JoinColumn(name = "resto_id", insertable = false, updatable = false)
-	private Resto resto;
+	private Resto restoo;
 	@ManyToOne
 	@JoinColumn(name = "specialite_id", insertable = false, updatable = false)
 	private Specialite specialite;
@@ -30,11 +30,11 @@ public class LigneSpecialite {
 	}
 
 	public Resto getResto() {
-		return resto;
+		return restoo;
 	}
 
 	public void setResto(Resto resto) {
-		this.resto = resto;
+		this.restoo = resto;
 	}
 
 	public Specialite getSpecialite() {

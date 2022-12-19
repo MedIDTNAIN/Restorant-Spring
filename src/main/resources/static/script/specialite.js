@@ -73,7 +73,7 @@ $(document)
 						var newLigne = '<tr style="position: relative;" class="bg-light" ><th scope="row">'
 							+ id
 							+ '</th><td colspan="4" style="height: 100%;">';
-						newLigne += '<h4 class="d-inline-flex">Voulez vous vraiment supprimer ce specialite ? </h4>';
+						newLigne += '<h4 class="d-inline-flex">Voulez vous vraiment supprimer cette spécialité? </h4>';
 						newLigne += '<button type="button" class="btn btn-outline-primary btn-sm confirmer" style="margin-left: 25px;">Oui</button>';
 						newLigne += '<button type="button" class="btn btn-outline-danger btn-sm annuler" style="margin-left: 25px;">Non</button></td></tr>';
 

@@ -13,4 +13,7 @@ public interface ZoneRepository extends JpaRepository<Zone, Integer>{
 	
 	@Query("select s from Specialite s where s.nom = :nom")
 	List<Zone> findByNom(String nom);
+
+	
+	List<Zone> findZoneByVille(int parseInt);
 }

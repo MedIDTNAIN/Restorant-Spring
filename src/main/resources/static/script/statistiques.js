@@ -5,11 +5,50 @@ $(document).ready(function(){
 // # = Nombre des produits
 // # ===============================
 	$.ajax({
-		url : 'produits/count',
+		url : 'restos/count',
 		data : '',
 		type : 'GET',
 		success : function(data) {
-			$('#produit').html(data);
+			$('#tresto').html(data);
+		},
+		error : function(jqXHR, textStatus,
+				errorThrown) {
+			console.log(textStatus);
+		}
+	});
+	
+	$.ajax({
+		url : 'villes/count',
+		data : '',
+		type : 'GET',
+		success : function(data) {
+			$('#tville').html(data);
+		},
+		error : function(jqXHR, textStatus,
+				errorThrown) {
+			console.log(textStatus);
+		}
+	});
+	
+	$.ajax({
+		url : 'series/count',
+		data : '',
+		type : 'GET',
+		success : function(data) {
+			$('#tserie').html(data);
+		},
+		error : function(jqXHR, textStatus,
+				errorThrown) {
+			console.log(textStatus);
+		}
+	});
+	
+	$.ajax({
+		url : 'specialites/count',
+		data : '',
+		type : 'GET',
+		success : function(data) {
+			$('#tspecialite').html(data);
 		},
 		error : function(jqXHR, textStatus,
 				errorThrown) {
@@ -23,7 +62,7 @@ $(document).ready(function(){
 // # = Nombre des machines achetées par année
 // # ===============================
 	$.ajax({
-		url : 'machines/byYear',
+		url : 'villes/count',
 		contentType : "application/json",
 		dataType : "json",
 		data : '',

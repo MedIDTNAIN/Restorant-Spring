@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ma.projet.restorant.entities.Zone;
@@ -44,5 +45,10 @@ public class ZoneController {
 	@GetMapping("/byName/{nom}")
 	public List<Zone> findByNom(@PathVariable(required = true) String nom) {
 		return zoneRepository.findByNom(nom);
+	}
+	
+	@GetMapping("/findByVille")
+	public List<Zone> findZoneByVille(@RequestParam String id) {
+		return zoneRepository.findZoneByVille(Integer.parseInt(id));
 	}
 }

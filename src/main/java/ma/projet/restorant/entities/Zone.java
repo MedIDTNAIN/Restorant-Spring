@@ -18,7 +18,7 @@ public class Zone {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nom;
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "zone")
 	private List<Resto> restos;
 	@ManyToOne
 	private Ville ville;

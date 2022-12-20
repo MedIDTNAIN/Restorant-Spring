@@ -47,8 +47,4 @@ public class ZoneController {
 		return zoneRepository.findByNom(nom);
 	}
 	
-	@GetMapping("/findByVille")
-	public List<Zone> findZoneByVille(@RequestParam String id) {
-		return zoneRepository.findZoneByVille(Integer.parseInt(id));
-	}
 }

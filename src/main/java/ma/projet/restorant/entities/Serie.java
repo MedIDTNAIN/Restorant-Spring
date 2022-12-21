@@ -15,7 +15,7 @@ public class Serie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nom;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "serie")
+	@OneToMany(fetch = FetchType.EAGER , mappedBy = "serie")
 	private List<Resto> restos;
 
 	public Serie() {

@@ -2,6 +2,8 @@ package ma.projet.restorant.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +18,8 @@ public class Ville {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nom;
-	@OneToMany(mappedBy = "ville", fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER , mappedBy = "ville")
+	@JsonIgnore
 	private List<Zone> zones;
 
 	public Ville() {

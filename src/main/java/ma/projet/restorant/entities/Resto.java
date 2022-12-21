@@ -29,11 +29,11 @@ public class Resto {
 	private boolean week;
 	@ManyToOne
 	private Zone zone;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "resto")
+	@OneToMany(fetch = FetchType.EAGER , mappedBy = "resto")
 	private List<Photo> photos;
 	@ManyToOne
 	private Serie serie;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "restoo")
+	@OneToMany(fetch = FetchType.EAGER , mappedBy = "restoo")
 	private List<LigneSpecialite> ligneSpecialite;
 
 	public Resto() {

@@ -66,8 +66,10 @@ $(document)
 				}
 
 			});
+
+
 			$.ajax({
-				url: '/zones/all',
+				url: '/villes/all',
 				type: 'GET',
 				success: function(data) {
 					var option = '';
@@ -75,7 +77,7 @@ $(document)
 						option += '<option value =' + e.id + '>' + e.nom + '</option>';
 					});
 
-					$('#zone').append(option);
+					$('#country').append(option);
 				},
 				error: function(jqXHR, textStatus,
 					errorThrown) {
@@ -83,6 +85,23 @@ $(document)
 				}
 
 			});
+
+			$('#country').on('change', function() {
+				var countryId = this.value;
+				$('#state').html('');
+				$.ajax({
+					url: '/zones/findByIdVille/'+countryId,
+					type: 'get',
+					success: function(res) {
+
+						$('#state').html('<option value="">Select Zone</option>');
+						$.each(res, function(key, value) {
+							$('#state').append('<option value =' + value.id + '>' + value.nom + '</option>');
+						});
+					}
+				});
+			});
+
 
 			$('#btn').click(
 				function() {
@@ -278,6 +297,9 @@ $(document)
 						}
 					});
 				});
+
+
+
 
 			// function remplir(data) {
 			// var contenu = $('#table-content');

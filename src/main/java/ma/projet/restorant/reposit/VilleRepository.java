@@ -7,11 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 
 import ma.projet.restorant.entities.Ville;
 
-public interface VilleRepository extends JpaRepository<Ville, Integer>{
+public interface VilleRepository extends JpaRepository<Ville, Integer> {
 
 	Ville findById(int id);
-	
-	@Query("select s from Specialite s where s.nom = :nom")
+
+	@Query("select v from Ville v where v.nom = :nom")
 	List<Ville> findByNom(String nom);
-	
 }

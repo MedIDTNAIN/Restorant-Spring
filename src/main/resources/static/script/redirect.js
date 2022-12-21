@@ -10,6 +10,13 @@ function show(page) {
 
 		event.preventDefault();
 	}
+	if (page == 'photo') {
+		$('a').removeClass('active');
+		$('a:contains(Photo)').addClass('active');
+		$("#main-content").load("page/photo.html");
+
+		event.preventDefault();
+	}
 	if (page == 'ville') {
 		$('a').removeClass('active');
 		$('a:contains(Villes)').addClass('active');

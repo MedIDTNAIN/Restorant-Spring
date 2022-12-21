@@ -2,6 +2,8 @@ package ma.projet.restorant.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +20,7 @@ public class Zone {
 	private int id;
 	private String nom;
 	@OneToMany(fetch = FetchType.EAGER , mappedBy = "zone")
+	@JsonIgnore
 	private List<Resto> restos;
 	@ManyToOne
 	@JoinColumn(name = "ville")

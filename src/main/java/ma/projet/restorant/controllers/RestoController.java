@@ -15,14 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ma.projet.restorant.entities.Resto;
 import ma.projet.restorant.entities.Serie;
+import ma.projet.restorant.entities.Ville;
 import ma.projet.restorant.entities.Zone;
 import ma.projet.restorant.reposit.RestoRepository;
+import ma.projet.restorant.reposit.VilleRepository;
+import ma.projet.restorant.reposit.ZoneRepository;
 
 @RestController
 @RequestMapping("restos")
 public class RestoController {
 	@Autowired
 	private RestoRepository restoRepository;
+	@Autowired
+	private ZoneRepository  zoneRepository;
 
 	@PostMapping("/save")
 	public void save(@RequestBody Resto Resto) {
@@ -65,14 +70,19 @@ public class RestoController {
 		return restoRepository.findByRank(rank);
 	}
 	
-	@GetMapping("/zone/{zone}")
-	public List<Resto> findByZone(@RequestParam(required = false) Zone zone) {
-		return restoRepository.findByZone(zone);
-	}
+	
 	
 	@GetMapping("/serie/{serie}")
 	public List<Resto> findBySerie(@RequestParam(required = false) Serie serie) {
 		return restoRepository.findBySerie(serie);
 	}
+	
+
+	@GetMapping("/findByIdZone/{id}")
+	public List<Resto> findAllById(@PathVariable(required = false) String id){
+		Zone v = zoneRepository.findById(Integer.parseInt(id));
+        return v.getRestos();
+    }
+
 
 }

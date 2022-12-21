@@ -22,10 +22,11 @@ public interface RestoRepository extends JpaRepository<Resto, Integer>{
 	@Query("select r from Resto r where r.rank = ?1 order by nom desc")
 	List<Resto> findByRank(int rank);
 	
-	@Query("select r from Resto r where r.zone like ?1")
-	List<Resto> findByZone(Zone zone);
 	
 	@Query("select r from Resto r where r.serie like ?1")
 	List<Resto> findBySerie(Serie serie);
+	
+	@Query("select r from Resto r where r.zone =:zone")
+	List<Resto> findZoneByVille(int zone);
 	
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,11 +30,12 @@ public class Resto {
 	private boolean week;
 	@ManyToOne
 	private Zone zone;
-	@OneToMany(fetch = FetchType.EAGER , mappedBy = "resto")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "resto")
+	@JsonIgnore
 	private List<Photo> photos;
 	@ManyToOne
 	private Serie serie;
-	@OneToMany(fetch = FetchType.EAGER , mappedBy = "restoo")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "restoo")
 	private List<LigneSpecialite> ligneSpecialite;
 
 	public Resto() {
@@ -67,6 +69,7 @@ public class Resto {
 	public String getAdresse() {
 		return adresse;
 	}
+
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}

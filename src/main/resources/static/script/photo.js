@@ -2,10 +2,10 @@ $(document)
 	.ready(
 		function() {
 
-			table = $('#tresto')
+			table = $('#tphoto')
 				.DataTable({
 					ajax: {
-						url: "restos/all",
+						url: "photos/all",
 						dataSrc: ''
 					},
 					columns: [
@@ -13,28 +13,10 @@ $(document)
 							data: "id"
 						},
 						{
-							data: "nom"
+							data: "resto.nom"
 						},
 						{
-							data: "adresse"
-						},
-						{
-							data: "openTime"
-						},
-						{
-							data: "closeTime"
-						},
-						{
-							data: "week"
-						},
-						{
-							data: "rank"
-						},
-						{
-							data: "serie.nom"
-						},
-						{
-							data: "zone.nom"
+							data: "url"
 						},
 						{
 							"render": function() {
@@ -49,24 +31,6 @@ $(document)
 
 				});
 
-			$.ajax({
-				url: '/series/all',
-				type: 'GET',
-				success: function(data) {
-					var option = '';
-					data.forEach(e => {
-						option += '<option value =' + e.id + '>' + e.nom + '</option>';
-					});
-
-					$('#serie').append(option);
-				},
-				error: function(jqXHR, textStatus,
-					errorThrown) {
-					console.log(textStatus);
-				}
-
-			});
-
 
 			$.ajax({
 				url: '/villes/all',
@@ -77,7 +41,7 @@ $(document)
 						option += '<option value =' + e.id + '>' + e.nom + '</option>';
 					});
 
-					$('#country').append(option);
+					$('#ville').append(option);
 				},
 				error: function(jqXHR, textStatus,
 					errorThrown) {
@@ -86,11 +50,11 @@ $(document)
 
 			});
 
-			$('#country').on('change', function() {
+			$('#ville').on('change', function() {
 				var countryId = this.value;
 				$('#zone').html('');
 				$.ajax({
-					url: '/zones/findByIdVille/'+countryId,
+					url: '/zones/findByIdVille/' + countryId,
 					type: 'get',
 					success: function(res) {
 
@@ -102,37 +66,38 @@ $(document)
 				});
 			});
 
+			$('#zone').on('change', function() {
+				var zoneId = this.value;
+				$('#resto').html('');
+				$.ajax({
+					url: '/restos/findByIdZone/' + zoneId,
+					type: 'get',
+					success: function(res) {
+
+						$('#resto').html('<option value="">Select Zone</option>');
+						$.each(res, function(key, value) {
+							$('#resto').append('<option value =' + value.id + '>' + value.nom + '</option>');
+						});
+					}
+				});
+			});
 
 			$('#btn').click(
 				function() {
-					var nom = $("#nom");
-					var adresse = $("#adresse");
-					var openTime = $("#openTime");
-					var closeTime = $("#closeTime");
-					var week = $("#week");
-					var rank = $("#rank");
-					var zone = $("#zone");
-					var serie = $("#serie");
+					var nom = $("#resto");
+					var url = $("#url");
 					if ($('#btn').text() == 'Ajouter') {
 						var p = {
-							nom: nom.val(),
-							adresse: adresse.val(),
-							openTime: openTime.val(),
-							closeTime: closeTime.val(),
-							week: week.val(),
-							rank: rank.val(),
-
-							serie: {
-								id: serie.val()
-							},
-
-							zone: {
-								id: zone.val()
+							url: url.val(),
+							resto: {
+								id: nom.val()
 							}
+
+							
 						};
 
 						$.ajax({
-							url: 'restos/save',
+							url: 'photos/save',
 							contentType: "application/json",
 							dataType: "json",
 							data: JSON.stringify(p),
@@ -148,7 +113,7 @@ $(document)
 							}
 						});
 						$("#main-content").load(
-							"./page/resto.html");
+							"./page/photo.html");
 					}
 				});
 
@@ -183,7 +148,7 @@ $(document)
 									e.preventDefault();
 									$
 										.ajax({
-											url: 'restos/delete/'
+											url: 'photos/delete/'
 												+ id,
 											data: {},
 											type: 'DELETE',
@@ -224,25 +189,13 @@ $(document)
 					var id = $(this).closest('tr').find('td').eq(0)
 						.text();
 					;
-					var nom = $(this).closest('tr').find('td')
-						.eq(1).text();
-					var adresse = $(this).closest('tr').find('td').eq(
-						2).text();
-					var openTime = $(this).closest('tr').find('td').eq(
-						3).text();
-					var closeTime = $(this).closest('tr').find('td').eq(
-						4).text();
-					var week = $(this).closest('tr').find('td').eq(
-						5).text();
-					var rank = $(this).closest('tr')
-						.find('td').eq(6).text().replace(" ",
-							"T");
-					var serie = $(this).closest('tr').find('td')
-						.eq(7).text();
-					var zone = $(this).closest('tr').find('td')
+					var url = $(this).closest('tr').find('td')
+						.eq(4).text();
+			
+					var resto = $(this).closest('tr').find('td')
 						.eq(8).text();
 					btn.text('Modifier');
-					$("#nom").val(nom);
+					$("#nom").val(resto);
 					$("#adresse").val(adresse);
 					$("#openTime").val(openTime);
 					$("#id").val(id);
@@ -274,7 +227,7 @@ $(document)
 						};
 						if ($('#btn').text() == 'Modifier') {
 							$.ajax({
-								url: 'restos/save',
+								url: 'photos/save',
 								contentType: "application/json",
 								dataType: "json",
 								data: JSON.stringify(p),
@@ -293,7 +246,7 @@ $(document)
 								}
 							});
 							$("#main-content").load(
-								"./page/resto.html");
+								"./page/photo.html");
 						}
 					});
 				});
@@ -321,7 +274,7 @@ $(document)
 			// }
 
 			// $.ajax({
-			// url: 'restos/all',
+			// url: 'photos/all',
 			// data: {op: ''},
 			// type: 'GET',
 			// async: false,

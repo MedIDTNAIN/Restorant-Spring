@@ -37,6 +37,12 @@ $(document)
 							data: "zone.nom"
 						},
 						{
+							data: "width"
+						},
+						{
+							data: "height"
+						},
+						{
 							"render": function() {
 								return '<button type="button" class="btn btn-outline-danger supprimer">Supprimer</button>';
 							}
@@ -90,7 +96,7 @@ $(document)
 				var countryId = this.value;
 				$('#zone').html('');
 				$.ajax({
-					url: '/zones/findByIdVille/'+countryId,
+					url: '/zones/findByIdVille/' + countryId,
 					type: 'get',
 					success: function(res) {
 
@@ -113,6 +119,8 @@ $(document)
 					var rank = $("#rank");
 					var zone = $("#zone");
 					var serie = $("#serie");
+					var lat = $("#lat");
+					var lng = $("#lng");
 					if ($('#btn').text() == 'Ajouter') {
 						var p = {
 							nom: nom.val(),
@@ -121,6 +129,8 @@ $(document)
 							closeTime: closeTime.val(),
 							week: week.val(),
 							rank: rank.val(),
+							height: lng.val(),
+							width: lat.val(),
 
 							serie: {
 								id: serie.val()
@@ -241,6 +251,12 @@ $(document)
 						.eq(7).text();
 					var zone = $(this).closest('tr').find('td')
 						.eq(8).text();
+					var height = $(this).closest('tr')
+						.find('td').eq(9).text().replace(" ",
+							"T");
+					var width = $(this).closest('tr')
+						.find('td').eq(10).text().replace(" ",
+							"T");
 					btn.text('Modifier');
 					$("#nom").val(nom);
 					$("#adresse").val(adresse);
@@ -263,6 +279,8 @@ $(document)
 							closeTime: $("#closeTime").val(),
 							week: $("#week").val(),
 							rank: $("#rank").val(),
+							width: $("#lat").val(),
+							height: $("#lng").val(),
 							serie: {
 								id: $("#serie").val()
 

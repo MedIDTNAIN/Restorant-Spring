@@ -73,34 +73,94 @@
 
 					</select>
 				</div>
-				
+
+
+
 			</div>
 
 			<div class="row">
-			<div class="col-sm-6 mb-2">
-					<label for="ville">Ville de restorant : </label> 
-					<select name="country" id="country"
-						class="form-control input-lg">
-						<option value="">Select country</option>
-					</select> 
-				</div>
-				
-				
 				<div class="col-sm-6 mb-2">
-					<label for="zone">Zone de restorant : </label> 
-					 <select name="zone" id="zone"
-						class="form-control input-lg">
+					<label for="ville">Ville de restorant : </label> <select
+						name="country" id="country" class="form-control input-lg">
+						<option value="">Select country</option>
+					</select>
+				</div>
+
+
+				<div class="col-sm-6 mb-2">
+					<label for="zone">Zone de restorant : </label> <select name="zone"
+						id="zone" class="form-control input-lg">
 						<option value="">Choisire Zone</option>
-					</select> 
+					</select>
 				</div>
-				
-					
-				</div>
+
 
 			</div>
 
+			<div class="row">
+				<div class="col-sm-6 mb-2">
+					<label for="lat">Lattitude : </label> <input
+						class="form-control input-lg" placeholder="lat" type="text"
+						id="lat" required>
+				</div>
+				<div class="col-sm-6 mb-2">
+					<label for="lng">Longitudinale : </label> <input
+						class="form-control input-lg" type="text" id="lng"
+						placeholder="lng">
+				</div>
+			</div>
 
+			<div class="card-body container-fluid">
 
+				<div class="row">
+
+					<div class="mapform">
+						<div id="map" style="height: 400px; width: 800px;" class="my-3"></div>
+						<script>
+							let map;
+							function initMap() {
+								map = new google.maps.Map(document
+										.getElementById("map"), {
+									center : {
+										lat : -34.397,
+										lng : 150.644
+									},
+									zoom : 8,
+									scrollwheel : true,
+								});
+
+								const uluru = {
+									lat : -34.397,
+									lng : 150.644
+								};
+								let marker = new google.maps.Marker({
+									position : uluru,
+									map : map,
+									draggable : true
+								});
+
+								google.maps.event.addListener(marker,
+										'position_changed', function() {
+											let lat = marker.position.lat()
+											let lng = marker.position.lng()
+											$('#lat').val(lat)
+											$('#lng').val(lng)
+										})
+
+								google.maps.event.addListener(map, 'click',
+										function(event) {
+											pos = event.latLng
+											marker.setPosition(pos)
+										})
+							}
+						</script>
+						<script async defer
+							src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+							type="text/javascript"></script>
+					</div>
+
+				</div>
+			</div>
 			<div class="row">
 				<div class="col">
 					<button type="button" class="btn btn-outline-success mt-3 mb-3"
@@ -120,6 +180,8 @@
 							<th scope="col">Rating</th>
 							<th scope="col">Serie</th>
 							<th scope="col">Zone</th>
+							<th scope="col">width</th>
+							<th scope="col">height</th>
 							<th scope="col">Supprimer</th>
 							<th scope="col">Modifier</th>
 						</tr>
@@ -132,4 +194,13 @@
 		</div>
 
 	</div>
+
+
+
+
+
+</div>
+
+
+</div>
 </div>

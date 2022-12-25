@@ -317,6 +317,11 @@ $(document)
 				});
 
 
+function showMaps() {
+    var maps = document.getElementById("mapss");
+    maps.style.display = "table-row";
+   
+}
 
 
 			// function remplir(data) {

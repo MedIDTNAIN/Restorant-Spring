@@ -1,131 +1,85 @@
 package ma.projet.restorant.entities;
 
-import java.io.Serializable;
-import java.util.Collection;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-
 
 @Entity
-@Table(name = "USER")
 public class User {
+	@Id
+	private String userId;
+	private String fullName;
+	private String password;
+	private int pin;
+	private int unitId;
+	private String userRole;
+	private boolean active;
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String nom , tele ;
-    private String email, password , code;
-    private int etat;
+	public User(String userId, String password, int pin, int unitId, String userRole, boolean active) {
+		this.userId = userId;
+		this.password = password;
+		this.pin = pin;
+		this.unitId = unitId;
+		this.userRole = userRole;
+		this.active = active;
+	}
 
-    public User() {
-    }
-    
-    
-    
-    public User(int id, String nom, String email, String password) {
-        this.id = id;
-        this.nom = nom;
-        this.email = email;
-        this.password = password;
-    }
-    
-    public User(String nom, String email, String password) {
-        this.nom = nom;
-        this.email = email;
-        this.password = password;
-    }
+	public User() {
 
-    public User(String nom,  String tele,  String email, String password) {
-        this.nom = nom;
-        
-        this.tele = tele;
-      
-        this.email = email;
-        this.password = password;
-    }
+	}
 
-    public User(int id, String nom,  String tele, String email, String password) {
-        this.id = id;
-        this.nom = nom;
-        this.tele = tele;
-        this.email = email;
-        this.password = password;
-    }
+	public String getFullName() {
+		return fullName;
+	}
 
-   
-    public String getNom() {
-        return nom;
-    }
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-   
-    
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-    public String getTele() {
-        return tele;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setTele(String tele) {
-        this.tele = tele;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-   
+	public int getPin() {
+		return pin;
+	}
 
-    public int getEtat() {
-        return etat;
-    }
+	public void setPin(int pin) {
+		this.pin = pin;
+	}
 
-    public void setEtat(int etat) {
-        this.etat = etat;
-    }
+	public int getUnitId() {
+		return unitId;
+	}
 
-    
+	public void setUnitId(int unitId) {
+		this.unitId = unitId;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public String getUserRole() {
+		return userRole;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public boolean isActive() {
+		return active;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    @Override
-    public String toString() {
-        return this.nom; //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 }

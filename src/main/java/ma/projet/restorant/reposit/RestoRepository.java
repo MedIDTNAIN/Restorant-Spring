@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import ma.projet.restorant.entities.Resto;
 import ma.projet.restorant.entities.Serie;
-import ma.projet.restorant.entities.Zone;
 
 public interface RestoRepository extends JpaRepository<Resto, Integer>{
 

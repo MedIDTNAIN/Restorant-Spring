@@ -15,18 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ma.projet.restorant.entities.Resto;
 import ma.projet.restorant.entities.Serie;
+import ma.projet.restorant.entities.Ville;
 import ma.projet.restorant.entities.Zone;
 import ma.projet.restorant.reposit.RestoRepository;
+import ma.projet.restorant.reposit.VilleRepository;
 import ma.projet.restorant.reposit.ZoneRepository;
 
 @RestController
 @RequestMapping("restos")
 public class RestoController {
-	
 	@Autowired
 	private RestoRepository restoRepository;
 	@Autowired
-	private ZoneRepository zoneRepository;
+	private ZoneRepository  zoneRepository;
 
 	@PostMapping("/save")
 	public void save(@RequestBody Resto Resto) {

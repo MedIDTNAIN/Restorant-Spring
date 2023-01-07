@@ -50,40 +50,6 @@ $(document)
 
 			});
 
-			$('#btn').click(
-				function() {
-					var nom = $("#nom");
-					
-					var ville = $("#ville");
-					if ($('#btn').text() == 'Ajouter') {
-						var p = {
-							nom: nom.val(),
-							
-							ville: {
-								id: ville.val()
-							}
-						};
-
-						$.ajax({
-							url: 'zones/save',
-							contentType: "application/json",
-							dataType: "json",
-							data: JSON.stringify(p),
-							type: 'POST',
-							async: false,
-							success: function(data, textStatus,
-								jqXHR) {
-								table.ajax.reload();
-							},
-							error: function(jqXHR, textStatus,
-								errorThrown) {
-								console.log(textStatus);
-							}
-						});
-						$("#main-content").load(
-							"./page/zone.html");
-					}
-				});
 
 			$('#table-content')
 				.on(

@@ -12,10 +12,12 @@ $(document)
 						{
 							data: "id"
 						},
+						
+						
 						{
 							data: "nom"
 						},
-						
+
 						{
 							"render": function() {
 								return '<button type="button" class="btn btn-outline-danger supprimer">Supprimer</button>';
@@ -28,15 +30,16 @@ $(document)
 						}]
 
 				});
-
+				
+		
 			$('#btn').click(
 				function() {
 					var nom = $("#nom");
-					
+
 					if ($('#btn').text() == 'Ajouter') {
 						var p = {
 							nom: nom.val(),
-							
+
 						};
 
 						$.ajax({
@@ -134,17 +137,17 @@ $(document)
 					;
 					var nom = $(this).closest('tr').find('td')
 						.eq(1).text();
-					
-							
+
+
 					btn.text('Modifier');
 					$("#nom").val(nom);
-					
+
 					btn.click(function(e) {
 						e.preventDefault();
 						var p = {
 							id: $("#id").val(),
 							nom: $("#nom").val(),
-							
+
 						};
 						if ($('#btn').text() == 'Modifier') {
 							$.ajax({
@@ -157,7 +160,7 @@ $(document)
 								success: function(data,
 									textStatus, jqXHR) {
 									table.ajax.reload();
-								
+
 									$("#nom").val('');
 									btn.text('Ajouter');
 								},

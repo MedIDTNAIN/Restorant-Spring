@@ -8,6 +8,13 @@ $(document)
 						url: "photos/all",
 						dataSrc: ''
 					},
+					columnDefs: [{
+						targets: 2,
+						render: function(dat) {
+							console.log(dat.url);
+							return "<img max-width: 100% src='img/" + dat.url + "' alt='" + dat.resto.nom + "'>";
+						}
+					}],
 					columns: [
 						{
 							data: "id"
@@ -16,17 +23,13 @@ $(document)
 							data: "resto.nom"
 						},
 						{
-							data: "url"
+							data: null
 						},
 						{
 							"render": function() {
 								return '<button type="button" class="btn btn-outline-danger supprimer">Supprimer</button>';
 							}
-						},
-						{
-							"render": function() {
-								return '<button type="button" class="btn btn-outline-secondary modifier">Modifier</button>';
-							}
+
 						}]
 
 				});
@@ -82,40 +85,7 @@ $(document)
 				});
 			});
 
-			$('#btn').click(
-				function() {
-					var nom = $("#resto");
-					var url = $("#url");
-					if ($('#btn').text() == 'Ajouter') {
-						var p = {
-							url: url.val(),
-							resto: {
-								id: nom.val()
-							}
-
-							
-						};
-
-						$.ajax({
-							url: 'photos/save',
-							contentType: "application/json",
-							dataType: "json",
-							data: JSON.stringify(p),
-							type: 'POST',
-							async: false,
-							success: function(data, textStatus,
-								jqXHR) {
-								table.ajax.reload();
-							},
-							error: function(jqXHR, textStatus,
-								errorThrown) {
-								console.log(textStatus);
-							}
-						});
-						$("#main-content").load(
-							"./page/photo.html");
-					}
-				});
+			
 
 			$('#table-content')
 				.on(
@@ -191,7 +161,7 @@ $(document)
 					;
 					var url = $(this).closest('tr').find('td')
 						.eq(4).text();
-			
+
 					var resto = $(this).closest('tr').find('td')
 						.eq(8).text();
 					btn.text('Modifier');
@@ -252,6 +222,33 @@ $(document)
 				});
 
 
+			const selectImage = document.querySelector('.select-image');
+			const inputFile = document.querySelector('#file');
+			const imgArea = document.querySelector('.img-area');
+
+			selectImage.addEventListener('click', function() {
+				inputFile.click();
+			})
+
+			inputFile.addEventListener('change', function() {
+				const image = this.files[0]
+				if (image.size < 2000000) {
+					const reader = new FileReader();
+					reader.onload = () => {
+						const allImg = imgArea.querySelectorAll('img');
+						allImg.forEach(item => item.remove());
+						const imgUrl = reader.result;
+						const img = document.createElement('img');
+						img.src = imgUrl;
+						imgArea.appendChild(img);
+						imgArea.classList.add('active');
+						imgArea.dataset.img = image.name;
+					}
+					reader.readAsDataURL(image);
+				} else {
+					alert("Image size more than 2MB");
+				}
+			})
 
 
 			// function remplir(data) {

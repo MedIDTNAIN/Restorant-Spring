@@ -29,36 +29,7 @@ $(document)
 
 				});
 
-			$('#btn').click(
-				function() {
-					var nom = $("#nom");
-					
-					if ($('#btn').text() == 'Ajouter') {
-						var p = {
-							nom: nom.val(),
-							
-						};
-
-						$.ajax({
-							url: 'series/save',
-							contentType: "application/json",
-							dataType: "json",
-							data: JSON.stringify(p),
-							type: 'POST',
-							async: false,
-							success: function(data, textStatus,
-								jqXHR) {
-								table.ajax.reload();
-							},
-							error: function(jqXHR, textStatus,
-								errorThrown) {
-								console.log(textStatus);
-							}
-						});
-						$("#main-content").load(
-							"./page/serie.html");
-					}
-				});
+			
 
 			$('#table-content')
 				.on(

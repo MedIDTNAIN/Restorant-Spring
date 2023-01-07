@@ -15,9 +15,7 @@ $(document)
 						{
 							data: "nom"
 						},
-						{
-							data: "adresse"
-						},
+
 						{
 							data: "openTime"
 						},
@@ -36,12 +34,7 @@ $(document)
 						{
 							data: "zone.nom"
 						},
-						{
-							data: "width"
-						},
-						{
-							data: "height"
-						},
+
 						{
 							"render": function() {
 								return '<button type="button" class="btn btn-outline-danger supprimer">Supprimer</button>';
@@ -109,58 +102,7 @@ $(document)
 			});
 
 
-			$('#btn').click(
-				function() {
-					var nom = $("#nom");
-					var adresse = $("#adresse");
-					var openTime = $("#openTime");
-					var closeTime = $("#closeTime");
-					var week = $("#week");
-					var rank = $("#rank");
-					var zone = $("#zone");
-					var serie = $("#serie");
-					var lat = $("#lat");
-					var lng = $("#lng");
-					if ($('#btn').text() == 'Ajouter') {
-						var p = {
-							nom: nom.val(),
-							adresse: adresse.val(),
-							openTime: openTime.val(),
-							closeTime: closeTime.val(),
-							week: week.val(),
-							rank: rank.val(),
-							height: lng.val(),
-							width: lat.val(),
 
-							serie: {
-								id: serie.val()
-							},
-
-							zone: {
-								id: zone.val()
-							}
-						};
-
-						$.ajax({
-							url: 'restos/save',
-							contentType: "application/json",
-							dataType: "json",
-							data: JSON.stringify(p),
-							type: 'POST',
-							async: false,
-							success: function(data, textStatus,
-								jqXHR) {
-								table.ajax.reload();
-							},
-							error: function(jqXHR, textStatus,
-								errorThrown) {
-								console.log(textStatus);
-							}
-						});
-						$("#main-content").load(
-							"./page/resto.html");
-					}
-				});
 
 			$('#table-content')
 				.on(
@@ -187,6 +129,7 @@ $(document)
 									.replaceWith(
 										oldLing);
 							});
+							
 						$('.confirmer')
 							.click(
 								function(e) {
@@ -317,12 +260,16 @@ $(document)
 				});
 
 
-function showMaps() {
-    var maps = document.getElementById("mapss");
-    maps.style.display = "table-row";
-   
-}
+			$('#zone').click(function() {
+				var localisation = document.getElementById("localisation");
+				if (localisation.style.display == "none") {
+					$('#localisation').toggle('slow', function() {
+						// Animation complete.
+					});
+				}
 
+
+			});
 
 			// function remplir(data) {
 			// var contenu = $('#table-content');

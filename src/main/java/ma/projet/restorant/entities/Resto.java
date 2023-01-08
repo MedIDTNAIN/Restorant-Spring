@@ -26,7 +26,7 @@ public class Resto {
 	@JsonFormat(pattern = "HH:mm")
 	private Date openTime, closeTime;
 	private double height, width;
-	private int rank;
+	private double rank;
 	private boolean week;
 	@ManyToOne
 	private Zone zone;
@@ -50,11 +50,11 @@ public class Resto {
 		this.id = id;
 	}
 
-	public int getRank() {
+	public double getRank() {
 		return rank;
 	}
 
-	public void setRank(int rank) {
+	public void setRank(double rank) {
 		this.rank = rank;
 	}
 

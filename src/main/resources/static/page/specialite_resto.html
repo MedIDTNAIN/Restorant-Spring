@@ -1,4 +1,4 @@
-<script src="script/photo.js" type="text/javascript"></script>
+<script src="script/specialite_resto.js" type="text/javascript"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link rel="stylesheet" href="style/photo.css">
@@ -31,7 +31,7 @@
 				<div>
 					<label for="ville">Ville de restorant : </label> <select
 						name="ville" id="ville" class="form-control input-lg">
-						<option value="">Choisir ville</option>
+						<option value="">Choisire Ville</option>
 					</select>
 				</div>
 				<div>
@@ -47,6 +47,12 @@
 						<option value=""></option>
 					</select>
 				</div>
+				<div>
+					<label for="specialite">Specialite : </label> <select
+						name="specialite" id="specialite" class="form-control input-lg">
+						<option value="">Select Specialite</option>
+					</select>
+				</div>
 				<div class="col">
 					<button type="button" class="btn btn-outline-success mt-3 mb-3"
 						id="btn" >Ajouter</button>
@@ -56,19 +62,23 @@
 			$('#btn').click(
 					function() {
 
-						var nom = $("#resto");
-						var url = $("#file");
+						var resto = $("#resto");
+						var specialite = $("#specialite");
 						if ($('#btn').text() == 'Ajouter') {
 							var p = {
 
-								url: url.val().replace(/C:\\fakepath\\/i, ''),
-								resto: {
-									id: nom.val()
-								}
+									
+									resto : {
+										id : resto.val()
+									},
+
+									specialite : {
+										id : specialite.val()
+									}
 
 							};
 
-							if (p.resto == "" || p.url == "") {
+							if (p.resto == "" || p.specialite == "") {
 							
 								swal({
 									  title: "Somthing Wrong !",
@@ -79,7 +89,7 @@
 								
 							} else {
 								$.ajax({
-									url: 'photos/save',
+									url: 'ligneSpecialites/save',
 									contentType: "application/json",
 									dataType: "json",
 									data: JSON.stringify(p),
@@ -102,37 +112,24 @@
 									});
 
 								$("#main-content").load(
-									"./page/photo.html");
+									"./page/specialite_resto.html");
 							}
 						}
 					});
 			</script>
-			<div class="container">
-				<input type="file" id="file" accept="image/*" hidden>
-				<div class="img-area" data-img="">
-					<i class='bx bxs-cloud-upload icon'></i>
-					<h3>Upload Image</h3>
-					<p>
-						Image size must be less than <span>2MB</span>
-					</p>
-				</div>
-				<button class="select-image">Select Image</button>
-			</div>
-
-
-		</div>
+			
 
 
 
 
 
 		<div class="row table-responsive m-auto rounded">
-			<table id="tphoto" class="table table-hover w-100">
+			<table id="tliresto" class="table table-hover w-100">
 				<thead>
 					<tr class="text-uppercase bg-light  w-100">
-						<th scope="col">Id</th>
+						
 						<th scope="col">Restaurant</th>
-						<th scope="col">Image</th>
+						<th scope="col">Specialite</th>
 						<th scope="col">Supprimer</th>
 
 					</tr>

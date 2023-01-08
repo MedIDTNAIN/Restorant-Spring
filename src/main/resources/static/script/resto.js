@@ -129,7 +129,7 @@ $(document)
 									.replaceWith(
 										oldLing);
 							});
-							
+
 						$('.confirmer')
 							.click(
 								function(e) {
@@ -176,7 +176,7 @@ $(document)
 					var btn = $('#btn');
 					var id = $(this).closest('tr').find('td').eq(0)
 						.text();
-					;
+				
 					var nom = $(this).closest('tr').find('td')
 						.eq(1).text();
 					var adresse = $(this).closest('tr').find('td').eq(
@@ -194,12 +194,7 @@ $(document)
 						.eq(7).text();
 					var zone = $(this).closest('tr').find('td')
 						.eq(8).text();
-					var height = $(this).closest('tr')
-						.find('td').eq(9).text().replace(" ",
-							"T");
-					var width = $(this).closest('tr')
-						.find('td').eq(10).text().replace(" ",
-							"T");
+					
 					btn.text('Modifier');
 					$("#nom").val(nom);
 					$("#adresse").val(adresse);
@@ -222,8 +217,7 @@ $(document)
 							closeTime: $("#closeTime").val(),
 							week: $("#week").val(),
 							rank: $("#rank").val(),
-							width: $("#lat").val(),
-							height: $("#lng").val(),
+							
 							serie: {
 								id: $("#serie").val()
 
@@ -235,7 +229,8 @@ $(document)
 						};
 						if ($('#btn').text() == 'Modifier') {
 							$.ajax({
-								url: 'restos/save',
+								url: 'restos/update/'
+												+ id,
 								contentType: "application/json",
 								dataType: "json",
 								data: JSON.stringify(p),
@@ -270,6 +265,17 @@ $(document)
 
 
 			});
+			let star = document.querySelectorAll('input');
+			let showValue = document.getElementById('rank');
+
+			for (let i = 0; i < star.length; i++) {
+				star[i].addEventListener('click', function() {
+					i = this.value;
+
+					showValue.value = i;
+					console.log(i);
+				});
+			}
 
 			// function remplir(data) {
 			// var contenu = $('#table-content');

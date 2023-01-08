@@ -2,28 +2,19 @@ $(document)
 	.ready(
 		function() {
 
-			table = $('#tphoto')
+			table = $('#tliresto')
 				.DataTable({
 					ajax: {
-						url: "photos/all",
+						url: "ligneSpecialites/all",
 						dataSrc: ''
 					},
-					columnDefs: [{
-						targets: 2,
-						render: function(dat) {
-							console.log(dat.url);
-							return "<img max-width: 100% src='img/" + dat.url + "' alt='" + dat.resto.nom + "'>";
-						}
-					}],
 					columns: [
-						{
-							data: "id"
-						},
+						
 						{
 							data: "resto.nom"
 						},
 						{
-							data: null
+							data: "specialite.nom"
 						},
 						{
 							"render": function() {
@@ -33,7 +24,23 @@ $(document)
 						}]
 
 				});
+			$.ajax({
+				url: '/specialites/all',
+				type: 'GET',
+				success: function(data) {
+					var option = '';
+					data.forEach(e => {
+						option += '<option value =' + e.id + '>' + e.nom + '</option>';
+					});
 
+					$('#specialite').append(option);
+				},
+				error: function(jqXHR, textStatus,
+					errorThrown) {
+					console.log(textStatus);
+				}
+
+			});
 
 			$.ajax({
 				url: '/villes/all',
@@ -77,7 +84,7 @@ $(document)
 					type: 'get',
 					success: function(res) {
 
-						$('#resto').html('<option value="">Select Restaurant</option>');
+						$('#resto').html('<option value="">Select Zone</option>');
 						$.each(res, function(key, value) {
 							$('#resto').append('<option value =' + value.id + '>' + value.nom + '</option>');
 						});
@@ -85,7 +92,7 @@ $(document)
 				});
 			});
 
-			
+
 
 			$('#table-content')
 				.on(

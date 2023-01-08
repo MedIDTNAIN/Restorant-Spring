@@ -10,6 +10,13 @@ function show(page) {
 
 		event.preventDefault();
 	}
+	if (page == 'specialite_resto') {
+		$('a').removeClass('active');
+		$('a:contains(Spécialite du restaurant)').addClass('active');
+		$("#main-content").load("page/specialite_resto.html");
+
+		event.preventDefault();
+	}
 	if (page == 'photo') {
 		$('a').removeClass('active');
 		$('a:contains(Photo)').addClass('active');

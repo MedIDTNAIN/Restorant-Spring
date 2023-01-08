@@ -25,7 +25,7 @@
 				des Specialites</p>
 		</div>
 		<div class="card-body container-fluid">
-			
+
 
 			<div class="row">
 				<div class="col-sm-6 mb-2">
@@ -40,7 +40,53 @@
 						id="btn">Ajouter</button>
 				</div>
 			</div>
-			
+			<script>
+			$('#btn').click(
+					function() {
+						var nom = $("#nom");
+
+						if ($('#btn').text() == 'Ajouter') {
+							var p = {
+								nom: nom.val(),
+
+							};
+							if (p.nom == "") {
+
+								swal({
+									title : "Somthing Wrong !",
+									text : "Tous les champs doit etre remplis!",
+									icon : "warning",
+									button : "OK",
+								});
+
+							} else {
+							$.ajax({
+								url: 'specialites/save',
+								contentType: "application/json",
+								dataType: "json",
+								data: JSON.stringify(p),
+								type: 'POST',
+								async: false,
+								success: function(data, textStatus,
+									jqXHR) {
+									table.ajax.reload();
+								},
+								error: function(jqXHR, textStatus,
+									errorThrown) {
+									console.log(textStatus);
+								}
+							});
+							swal({
+								title : "Bien Ajoutee !",
+								icon : "success",
+								button : "OK",
+							});
+							$("#main-content").load(
+								"./page/specialite.html");
+						}
+							}
+					});
+			</script>
 			<div class="row table-responsive m-auto rounded">
 				<table id="tspecialite" class="table table-hover w-100">
 					<thead>

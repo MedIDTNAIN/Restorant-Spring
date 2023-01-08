@@ -32,36 +32,7 @@ $(document)
 				});
 				
 		
-			$('#btn').click(
-				function() {
-					var nom = $("#nom");
-
-					if ($('#btn').text() == 'Ajouter') {
-						var p = {
-							nom: nom.val(),
-
-						};
-
-						$.ajax({
-							url: 'specialites/save',
-							contentType: "application/json",
-							dataType: "json",
-							data: JSON.stringify(p),
-							type: 'POST',
-							async: false,
-							success: function(data, textStatus,
-								jqXHR) {
-								table.ajax.reload();
-							},
-							error: function(jqXHR, textStatus,
-								errorThrown) {
-								console.log(textStatus);
-							}
-						});
-						$("#main-content").load(
-							"./page/specialite.html");
-					}
-				});
+		
 
 			$('#table-content')
 				.on(
@@ -151,7 +122,8 @@ $(document)
 						};
 						if ($('#btn').text() == 'Modifier') {
 							$.ajax({
-								url: 'specialites/save',
+								url: 'restos/update/'+ id,
+												
 								contentType: "application/json",
 								dataType: "json",
 								data: JSON.stringify(p),

@@ -33,6 +33,7 @@ body{
 .center{
 	width: 262px; 
 	margin: auto;
+
 }
 
 
@@ -60,7 +61,7 @@ body{
 	content: '\f005';
 	font-family: FontAwesome;
 	margin: 5px;
-	font-size: 2rem;
+	font-size: 2.5rem;
 	display: inline-block;
 	cursor: pointer;
 }

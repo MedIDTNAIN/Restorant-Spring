@@ -116,13 +116,13 @@ $(document)
 					btn.click(function(e) {
 						e.preventDefault();
 						var p = {
-							id: $("#id").val(),
+							id: id,
 							nom: $("#nom").val(),
 
 						};
 						if ($('#btn').text() == 'Modifier') {
 							$.ajax({
-								url: 'restos/update/'+ id,
+								url: 'specialites/save',
 												
 								contentType: "application/json",
 								dataType: "json",

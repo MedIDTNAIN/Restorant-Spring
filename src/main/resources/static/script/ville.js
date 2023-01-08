@@ -112,7 +112,7 @@ $(document)
 					btn.click(function(e) {
 						e.preventDefault();
 						var p = {
-							id: $("#id").val(),
+							id: id,
 							nom: $("#nom").val(),
 							
 						};

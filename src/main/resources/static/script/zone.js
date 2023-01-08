@@ -127,20 +127,19 @@ $(document)
 						1).text();
 				
 					var ville = $(this).closest('tr').find('td')
-						.eq(4).text();
+						.eq(2).text();
 
 
 					btn.text('Modifier');
 					$("#nom").val(nom);
-					
+										
 					var op = $('#ville option').filter(function() { return $(this).html() == ville; }).val();
 					$("#ville").val(op);
-					$("#id").val(id);
-
+					
 					btn.click(function(e) {
 						e.preventDefault();
 						var p = {
-							id: $("#id").val(),
+							id: id,
 							nom: $("#nom").val(),
 							
 							ville: {
@@ -160,8 +159,8 @@ $(document)
 								success: function(data,
 									textStatus, jqXHR) {
 									table.ajax.reload();
+								
 									$("#nom").val('');
-									
 									$("#ville").val('');
 									btn.text('Ajouter');
 								},

@@ -15,6 +15,9 @@ $(document)
 						{
 							data: "nom"
 						},
+						{
+							data: "adresse"
+						},
 
 						{
 							data: "openTime"
@@ -31,6 +34,7 @@ $(document)
 						{
 							data: "serie.nom"
 						},
+
 						{
 							data: "zone.nom"
 						},
@@ -176,7 +180,7 @@ $(document)
 					var btn = $('#btn');
 					var id = $(this).closest('tr').find('td').eq(0)
 						.text();
-				
+
 					var nom = $(this).closest('tr').find('td')
 						.eq(1).text();
 					var adresse = $(this).closest('tr').find('td').eq(
@@ -194,7 +198,8 @@ $(document)
 						.eq(7).text();
 					var zone = $(this).closest('tr').find('td')
 						.eq(8).text();
-					
+
+
 					btn.text('Modifier');
 					$("#nom").val(nom);
 					$("#adresse").val(adresse);
@@ -207,17 +212,20 @@ $(document)
 					$("#serie").val(op);
 					var op1 = $('#zone option').filter(function() { return $(this).html() == zone; }).val();
 					$("#zone").val(op1);
+					$("#lat").val(lat);
+					$("#lng").val(lng);
+
 					btn.click(function(e) {
 						e.preventDefault();
 						var p = {
-							id: $("#id").val(),
+							id: id,
 							nom: $("#nom").val(),
 							adresse: $("#adresse").val(),
 							openTime: $("#openTime").val(),
 							closeTime: $("#closeTime").val(),
 							week: $("#week").val(),
 							rank: $("#rank").val(),
-							
+
 							serie: {
 								id: $("#serie").val()
 
@@ -225,12 +233,13 @@ $(document)
 							zone: {
 								id: $("#zone").val()
 
-							}
+							},
+							lat: $("#lat").val(),
+							lng: $("#lng").val(),
 						};
 						if ($('#btn').text() == 'Modifier') {
 							$.ajax({
-								url: 'restos/update/'
-												+ id,
+								url: 'restos/save',
 								contentType: "application/json",
 								dataType: "json",
 								data: JSON.stringify(p),

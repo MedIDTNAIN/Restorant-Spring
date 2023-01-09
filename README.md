@@ -45,7 +45,7 @@ Voici l'architecture générale de notre application
 ### Comment utiliser cette application ?
 Pour utiliser cette application, il suffit juste de modifier le fichier 'application.properties' pour mettre le nom de choix votre base de donnée et les coordonées d'accès à la base de données à savoir le 'username' et le 'password'.
 # Aperçu de la partie Admin
-Side Barre  |  Restaurants | Spécialités
+SideBarre  |  Restaurants | Spécialités
 :-------------:|:----------------:|:----------------:
 ![Imgur](https://imgur.com/Re3jnNz.jpg)  | ![Imgur](https://imgur.com/Jgqw5a5.jpg) | ![Imgur](https://imgur.com/SdhyaTU.jpg)
 Villes  |  Zones | Séries

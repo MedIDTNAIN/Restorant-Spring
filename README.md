@@ -51,6 +51,6 @@ Side Barre  |  Restaurants | Spécialités
 Villes  |  Zones | Séries
 :-------------:|:----------------:|:----------------:
 ![Imgur](https://imgur.com/NPNnKK3.jpg)  | ![Imgur](https://imgur.com/g1ncG8M.jpg) | ![Imgur](https://imgur.com/gbPU7ek.jpg)
-Spécialité du restaurant  |  Photos | Statéstiques
+Spécialité du restaurant  |  Photos | Statistiques
 :-------------:|:----------------:
 ![Imgur](https://imgur.com/Ju6AOL9.jpg)  | ![Imgur](https://imgur.com/ifa2QYz.jpg) | ![Imgur](https://imgur.com/vOSOsyr.jpg)

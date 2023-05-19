@@ -18,7 +18,7 @@ Dépot : https://github.com/laasri-Mohamed/RestoWhere
 #### Description
 
 Gestion des flux :
--Gestion des monuments(identifiant,nom,longitude,lattitude,photo,ville)
+-Gestion des restaurants(identifiant,nom,longitude,lattitude,photo,ville)
 -Gestion des villes(identifiant,nom,longitude,latitude,zone)
 -Gestion des zones(identifiant,nom,longitude,latitude,ville)
 -Gestion de l'authentification par un token Bearer JWT
